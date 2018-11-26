@@ -45,7 +45,7 @@
             \vfill\vfill\vfill
             {\large 1819ODDSEM}		
             \vfill\vfill
-            \includegraphics[width=0.3\textwidth]{logo.png}\\
+            % \includegraphics[width=0.3\textwidth]{logo.png}\\
             Electrical and Instrumentation Engineering Department\\
             Thapar Institute of Engineering and Technology
         \end{titlepage}
@@ -54,9 +54,30 @@
         \tableofcontents
         \newpage
         \pagenumbering{arabic}
-    
+    	\section{Declaration}
+    	We hereby declare that the project entitled Remoulding an existing house into smart home is an authentic record of our own work carried out in the Electrical and Instrumentation Engineering Department, Thapar University, Patiala, under the guidance of Dr. Mukesh Singh during 7th semester (2018).\\
+    	
+    	\begin{minipage}{0.5\textwidth}
+    		\begin{flushleft}
+    			\textit{Date:}
+    		\end{flushleft}
+    		\begin{flushright}
+    			
+    			\textit{Investigating Group}\\[0.25cm]
+    			101504114 Satyam Kumar\\
+    			101504119 Shubham Gupta\\
+    			101504120 Stuti Sidhu\\
+    			101504122 Swanav\\
+    		\end{flushright}
+    		\begin{flushleft}
+    			\textit{Faculty Supervisor:}\\[0.25cm]
+    			Dr. Mukesh Singh\\
+    			Associate Professor\\
+    		\end{flushleft}
+    	\end{minipage}
         %Aim: 2-3 sentences
         \section{Aim}
+        	The project aims to manage and control existing devices through a Home Automation Unit accessible over the internet.
             The project aims to increase the energy efficiency of a household by converting primitive devices into smart devices and managing them using a self-evolving deep learning model.
         
         %Literature Survey: Follow any IEEE Transaction papers and write the literature survey. From this literature Survey find the motivation to do this work.  (2 Pages)
@@ -108,44 +129,44 @@
         %Each methodology should be linked with objective and deliverables
         %For example: Objective 1 is achieved by Work package 1. Work package 1 has three methodology and this work package has 1 deliverables.
         \section{Methodology}
-        \subsection{Sensor aggregator module development}
-        Sensors are collected in a single unit to form an interconnection among the sensors for efficient analysis and evaluation of aggregated data by the controlling unit.
+        %\subsection{Sensor aggregator module development}
+        %Sensors are collected in a single unit to form an interconnection among the sensors for efficient analysis and evaluation of aggregated data by the controlling unit.
         
-        \subsubsection{Selection of sensors}
-        As a first step, we need to figure out all the environment variables relevant to home automation system. These are the conceived energy based equipments which will be optimized :
-        \begin{itemize}
-            \item Lights
-            \item Fans
-            \item Air Conditioners
-        \end{itemize}
-        Now based upon the above identified appliances, the environment variables under observation will be
-        \begin{itemize}
-            \item Infrared Radiations - To detect the presence of human being in or around the target area.
-            \item Temperature - To detect the temperature of the surrounding room environment.
-            \item Illumination - The information provided by this sensor will be used by the system to, adjust the illumination accordingly to the desired level.
-        \end{itemize}
-        The choice of sensors based on the identified parameters will be done considering the room specifications and the accuracy and range provided by the sensor unit.
+        %\subsubsection{Selection of sensors}
+        %As a first step, we need to figure out all the environment variables relevant to home automation system. These are the conceived energy based equipments which will be optimized :
+        %\begin{itemize}
+         %   \item Lights
+         %	 \item Fans
+           % \item Air Conditioners
+        %\end{itemize}
+        %Now based upon the above identified appliances, the environment variables under observation will be
+        %\begin{itemize}
+            %\item Infrared Radiations - To detect the presence of human being in or around the target area.
+            %\item Temperature - To detect the temperature of the surrounding room environment.
+            %\item Illumination - The information provided by this sensor will be used by the system to, adjust the illumination accordingly to the desired level.
+        %\end{itemize}
+        %The choice of sensors based on the identified parameters will be done considering the room specifications and the accuracy and range provided by the sensor unit.
         
-        \subsubsection{Aggregation of sensors}
-        Based upon the appliances present inside a particular room, specific sensors will be aggregated to form a module of sensors and it will be installed inside every room. This will help in collecting optimum data and reduce complexity in the installation as well.\\
+        %\subsubsection{Aggregation of sensors}
+        %Based upon the appliances present inside a particular room, specific sensors will be aggregated to form a module of sensors and it will be installed inside every room. This will help in collecting optimum data and reduce complexity in the installation as well.\\
         
-        The module formulated will be a combined unit containing sensors and circuitry for controlling an entire room. All such modules will form a network through the Home Automation Unit. This module will act as a local control placed centrally on the ceiling providing ease of access to every part of the room through a single unit.
+        %The module formulated will be a combined unit containing sensors and circuitry for controlling an entire room. All such modules will form a network through the Home Automation Unit. This module will act as a local control placed centrally on the ceiling providing ease of access to every part of the room through a single unit.
         
-        \subsection{Plug and Play actuator development}
-        To introduce software based control, microcontroller based actuators modules are to be attached either in the power supply lines of the devices (fan and lighting system control) or must be directly attached to the device itself (Air Conditioner control).
+        %\subsection{Plug and Play actuator development}
+        %To introduce software based control, microcontroller based actuators modules are to be attached either in the power supply lines of the devices (fan and lighting system control) or must be directly attached to the device itself (Air Conditioner control).
         
-        \subsubsection{Study of control methodology}
-        The development of actuator modules designed for each device to be automated will be using plug and play methods so as to convert existing devices into smart ones. The actuators will operate and automate the appliances based on the commands received from the microprocessor.
-        \subsubsection{Actuator circuit design}
-        \begin{enumerate}
-            \item Air Conditioner
-            The plug and play module of the air conditioner will be equipped with IR blasters. It will then receive the signal and relay this to the receiving end to automate the air conditioner accordingly.
-            \item LED Lights
-            The use of pulse width modulated signals that drives a control switch (say MOSFET) to switch the LEDs accordingly thereby altering the intensity.
-            \item Fans
-            Speed regulation of fans will be done using the combination of  Diac and Triac to reduce the energy losses that were occurring by the use of conventional voltage controller.
-        \end{enumerate}
-        Now the designed circuit of actuator modules is designed in such a way that there would be no need to interfere with the existing circuitry of the appliances with a number of iteration done, we will achieve the most desired place of installation of the actuator modules.
+        %\subsubsection{Study of control methodology}
+        %The development of actuator modules designed for each device to be automated will be using plug and play methods so as to convert existing devices into smart ones. The actuators will operate and automate the appliances based on the commands received from the microprocessor.
+        %\subsubsection{Actuator circuit design}
+        %\begin{enumerate}
+%            \item Air Conditioner
+         %   The plug and play module of the air conditioner will be equipped with IR blasters. It will then receive the signal and relay this to the receiving end to automate the air conditioner accordingly.
+          %  \item LED Lights
+           % The use of pulse width modulated signals that drives a control switch (say MOSFET) to switch the LEDs accordingly thereby altering the intensity.
+           % \item Fans
+            %Speed regulation of fans will be done using the combination of  Diac and Triac to reduce the energy losses that were occurring by the use of conventional voltage controller.
+        %\end{enumerate}
+        %Now the designed circuit of actuator modules is designed in such a way that there would be no need to interfere with the existing circuitry of the appliances with a number of iteration done, we will achieve the most desired place of installation of the actuator modules.
         \subsection{Energy optimization algorithm formulation}
         \subsubsection{Study of decision influencing parameters}
         \subsubsection{Design of a deep learning model}
@@ -186,7 +207,7 @@
                     \item [UEI404 Digital Signal Processing Fundamentals] 
                     Use of DSP techniques to process signal from sensors and other devices
                     \item [UEI609 Fundamentals of Microprocessors and Microcontrollers] 
-                    Fundamentals of Assembly Programming and Embedded system design using micro-controllers 
+                    % Fundamentals of Assembly Programming and Embedded system design using micro-controllers 
                     \item [UEI501 Control Systems] 
                     Use of closed loop systems to eliminate errors in a system 
                     \item [UEE801 Electric Drives] 
