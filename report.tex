@@ -7,12 +7,16 @@
 \usepackage{amsfonts}
 \usepackage{amssymb}
 \usepackage{makeidx}
+\usepackage{verbatim}
+\usepackage{listings}
 \usepackage{graphicx}
 \usepackage{pgfgantt}
 \usepackage{multirow}
 \usepackage{array}
+\usepackage{siunitx}
 \usepackage{tabularx}
 \usepackage{longtable}
+\usepackage{wrapfig}
 \usepackage{pdfpages}
 \usepackage{fullpage}
 \title{ IoT enabled smart switchboard to enable remote control of existing home appliances }
@@ -30,11 +34,14 @@
     	\begin{minipage}{0.5\textwidth}
     		\begin{flushleft}
     			\large
-    			\textit{Investigating Group}\\[0.25cm]
-    			101504114 Satyam Kumar\\
-    			101504119 Shubham Gupta\\
-    			101504120 Stuti Sidhu\\
-    			101504122 Swanav\\
+    			\begin{tabular}{l l}
+    				\multicolumn{2}{c}{\textit{Investigating Group}} \\
+    				Satyam Kumar   & 101504114 \\
+    				Shubham Gupta  & 101504119 \\
+    				Stuti Sidhu    & 101504120 \\
+    				Swanav Swaroop & 101504122 \\
+    			\end{tabular}
+    			
     		\end{flushleft}
     	\end{minipage}
     	~
@@ -52,6 +59,7 @@
     	Electrical and Instrumentation Engineering Department\\
     \end{titlepage}
     
+    \setcounter{tocdepth}{1}
     \tableofcontents
     \newpage
     \frontmatter
@@ -69,7 +77,7 @@
 	    \include{chapters/chapter3}
 	    \include{chapters/chapter4}
 	    \include{chapters/chapter5}
-	    \include{chapters/chapter6}
+	    \include{chapters/chapter6}         
   
     \backmatter
     	\include{chapters/backmatter/references}

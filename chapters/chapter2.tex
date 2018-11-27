@@ -1,5 +1,153 @@
 \chapter{Theory, Standards and Constraints}
         \section{Theory}
-        \section{Assumptions and Constraints}
-        \section{Technical Standards Used}
+\begin{comment}
+        
+        The increasing pollution and degradation of environment due to the conventional energy sources have made it imperative for us to switch to renewable energy sources. But their adoption has not received the fraction it ideally should. India currently fulfils 18.37\% of its power needs from renewable sources but plans to increase this share to 40\% by 2030. The adoption of these sources has always drawn scepticism from consumers, as one cannot completely rely on them, especially for going completely off-grid.\\
+        For such a vision to actually realise, we need to overcome the biggest drawbacks of renewable energy
+        source, its reliability. So this project aims to formulate and implement machine learning methods to predict the generation and optimize the consumption in the household to ensure reliability and increased efficiency of the whole system.
+        
+        The project will focus on the more efficient domestic use of energy generated from renewable sources. For this, the project will employ a data-driven approach calculating the power consumptions of each and every home appliance and prioritizing the duration and time of usage of each appliance through self-learning algorithms in order to minimize the power requirements at all times of the day also ensuring user convenience. At the moments of peak requirements, some devices could be shut off considering no immediate requirements of the device and they could operate when the load requirements are lower. For instance, the system will ensure a minimum permissible lighting in case of peak power requirements and switch off the remaining lights, also the temperature of the ac could be optimized automatically to an intermediate temperature level where the power consumptions are low so that load is satisfied and also user comfort is ensured. Similar commercial systems currently exist, but are prohibitively expensive and designed for grid-provided power.
+        To remove the entry barrier for customers to the smart-home market, novel Internet of Things (IoT)-enabled modules will be designed which will attach to a house's existing commonly used electric appliances and connect these individual appliances with the local HAS network. These modules will be plug and play setup kits eliminating the need for purchase of special smart devices and also enhance the security in a house.
+        Development of a Machine-Learning (ML)-based demand-response set-up to predict power generation by the off-grid apparatus which will be used by algorithms to optimize device energy consumption to achieve maximum throughput. Renewable energy sources are somewhat cyclical and unpredictable. An accurate demand-prediction model thus developed will enhance the robustness of the system against varying electricity supply. This will increase the longevity of the energy storage systems used in renewable energy systems, by balancing the discharge and recharge cycles. From the analysis of the individual usage of various appliances, the HAS could power down idle devices to save energy.
+        Sensors around the house will monitor variables such as user presence, temperature and illumination, and turn on specific devices to increase convenience and ease of usage, according to predefined and self-evolving algorithms customized for an individual user.
+        The development of a user-friendly application facilitating interaction with the system will be done. For instance, the appliances will be accessible via apps developed for mobile devices and laptops. A touch-screen kiosk will also be designed as an alternative to the conventional switchboards. This kiosk will provide access to the HAS interface in every room, with additional information received by the sensors around the house.
+        An Application Programming Interface (API) will be developed to allow third-party developers to manufacture compatible devices that can be easily integrated with this HAS. This API will a) enable new devices to communicate with other devices and programs on the HAS, by sending and receiving operation parameters, such as readings from other sensors; and b) also make the overall system extensible, and create an ecosystem for additional devices (analogous to the Android SDK for third-party applications on the Android platform).
+        Everything will be designed with a modular design approach, allowing the users to pick and choose the
+        selected functionality they want to add to their house, based on their personal requirements and monetary capability. The users will also be able to add functionality over an extended span of time, enhancing the viability of this project and long-term relevance of the project.
+        This project has the potential to develop a standardised systems framework that will facilitate the adoption of smart technologies (sensors; IoT) in existing domestic situations, which is user-friendly, cost-effective and capable of being controlled from widely-used devices (smartphones). The modular design will allow people to choose from simple power measurement mechanisms and warning system to completely intelligent IoT driven full automation. Depending on the investment capability, the people can move progressively from simplest to most complex system implementation incrementally over few years.
+        Specifically designed to be used in areas where power is generated from off-grid, renewable sources, the project has the potential to be scalable and replicable in other regions of the country. Commercial delivery options will be one of the main project aims. The opportunity of commercialization of the concept will further enhance the scalability of the project work.
+        
+        \end{comment}
+      
+%       \begin{comment}
+        
+        \subsection{ESP8266}
+        \begin{wrapfigure}{r}{0.3\textwidth}
+        	\includegraphics[width=0.3\textwidth]{photos/theory/esp8266.jpg}
+        	\caption{ESP8266 Wifi Microcontroller}
+        \end{wrapfigure}
     
+        The ESP8266 WiFi Module has a self contained SOC with an integration of TCP/IP protocol stack which can provide any microcontroller access to the Wifi network. The ESP8266 has the potential of either hosting an application or offloading all Wi-Fi networking functions from another application processor. Each ESP8266 module comes pre-programmed with an AT command set firmware, meaning, you can simply hook this up to your Arduino device and get about as much WiFi-ability as a WiFi Shield offers (and that just out of the box). The ESP8266 module is an extremely cost effective board with a huge, and ever growing, community.\\
+        
+        This module has a powerful enough on-board processing and storage capability that allows it to be integrated with the sensors and other application specific devices through its GPIOs with minimal development up-front and minimal loading during runtime. Its high degree of on-chip integration allows for minimal external circuitry, including the front-end module, is designed to occupy minimal PCB area. The ESP8266 supports APSD for VoIP applications and Bluetooth co-existance interfaces, it contains a self-calibrated RF allowing it to work under all operating conditions, and requires no external RF parts.
+\subsection{Triac}
+The TRIAC is an ideal device to use for AC switching applications because it can control the current flow over both halves of an alternating cycle. A thyristor is only able to control them over one half of a cycle. During the remaining half no conduction occurs and accordingly only half the waveform can be utilised.\\
+
+\begin{wrapfigure}{r}{0.3\textwidth}
+	\includegraphics[width=0.3\textwidth]{photos/theory/bt136.jpg}
+	\caption{Triac BT136}
+\end{wrapfigure}
+Seen from the outside it may be viewed as two back to back thyristors and this is what the circuit symbol indicates.On the TRIAC symbol there are three terminals. These are the Gate and two other terminals are often referred to as an "Anode" or "Main Terminal". As the TRIAC has two of these they are labelled either Anode 1 and Anode 2 or Main Terminal, MT1 and MT2.
+The TRIAC is a component that is effectively based on the thyristor. It provides AC switching for electrical systems. Like the thyristor, the TRIACs are used in many electrical switching applications. They find particular use for circuits in light dimmers, etc., where they enable both halves of the AC cycle to be used. This makes them more efficient in terms of the usage of the power available. While it is possible to use two thyristors back to back, this is not always cost effective for low cost and relatively low power applications.
+
+\subsection{MOC3021 and MOC3041 Optocouplers}
+An opto-isolator (also called an optocoupler, photocoupler, or optical isolator) is an electronic component that transfers electrical signalsbetween two isolated circuits by using light. Opto-isolators prevent high voltages from affecting the system receiving the signal.Commercially available opto-isolators withstand input-to-output voltages up to 10 kV and voltage transients with speeds up to 25 kV/$ \si\micro $s.\\
+\begin{wrapfigure}{r}{0.3\textwidth}
+	\includegraphics[width=0.3\textwidth]{photos/theory/moc3021.jpg}
+	\caption{Optocoupler MOC3021}
+\end{wrapfigure}
+A common type of opto-isolator consists of an LED and a phototransistor in the same opaque package. Other types of source-sensor combinations include LED-photodiode, LED-LASCR, and lamp-photoresistor pairs. Usually opto-isolators transfer digital (on-off) signals, but some techniques allow them to be used with analog signals.
+An opto-isolator contains a source (emitter) of light, almost always a near infrared light-emitting diode (LED), that converts electrical input signal into light, a closed optical channel (also called dielectrical channel[7]), and a photosensor, which detects incoming light and either generates electric energy directly, or modulates electric current flowing from an external power supply. The sensor can be a photoresistor, a photodiode, a phototransistor, a silicon-controlled rectifier (SCR) or a triac. Because LEDs can sense light in addition to emitting it, construction of symmetrical, bidirectional opto-isolators is possible. An optocoupled solid-state relay contains a photodiode opto-isolator which drives a power switch, usually a complementary pair of MOSFETs. A slotted optical switch contains a source of light and a sensor, but its optical channel is open, allowing modulation of light by external objects obstructing the path of light or reflecting light into the sensor.
+
+\subsection{L7805 Voltage Regulator}
+
+\begin{wrapfigure}{r}{0.3\textwidth}
+	\includegraphics[width=0.3\textwidth]{photos/theory/lm7805.jpg}
+	\caption{5V Voltage Regulator LM7805}
+\end{wrapfigure}
+
+Voltage sources in a circuit may have fluctuations resulting in not providing fixed voltage outputs. A voltage regulator IC maintains the output voltage at a constant value. 7805 IC, a member of 78xx series of fixed linear voltage regulators used to maintain such fluctuations, is a popular voltage regulator integrated circuit (IC). The xx in 78xx indicates the output voltage it provides. 7805 IC provides +5 volts regulated power supply with provisions to add a heat sink.\\
+
+\textbf{7805 Rating}
+\begin{itemize}
+	\item Input voltage range 7V- 35V
+	\item Current rating Ic = 1A
+	\item Output voltage range   V{max}=5.2V ,V{min}=4.8V
+\end{itemize}
+
+This difference between the input and output voltage is released as heat. The greater the difference between the input and output voltage, more the heat generated. If the regulator does not have a heat sink to dissipate this heat, it can get destroyed and malfunction. Hence, it is advisable to limit the voltage to a maximum of 2-3 volts above the output voltage.
+
+\subsection{Snubber Circuit}
+\begin{wrapfigure}{r}{0.3\textwidth}
+	\includegraphics[width=0.3\textwidth]{photos/theory/snubber.jpg}
+	\caption{A RC Snubber Circuit}
+\end{wrapfigure}
+Due to overheating, over voltage, over current or excessive change in voltage or current switching devices and circuit components may fail. From over current they can be protected by placing fuses at suitable locations. Heat sinks and fans can be used to take the excess heat away from switching devices and other components. Snubber circuits are needed to limit the rate of change in voltage or current (di/dt or dv/dt) and over voltage during turn-on and turn-off. \\
+
+These are placed across the semiconductor devices for protection as well as to improve the performance. Static dv/dt is a measure of the ability of a thyristor to retain a blocking state under the influence of a voltage transient. These are also used across the relays and switches to prevent arcing.\\
+
+These are placed across the various switching devices like transistors, thyristors, etc. Switching from ON to OFF state results the impedance of the device suddenly changes to the high value. But this allows a small current to flow through the switch. This induces a large voltage across the device. If this current reduced at faster rate more is the induced voltage across the device and also if the switch is not capable of withstanding this voltage the switch becomes burn out. So auxiliary path is needed to prevent this high induced voltage. \\
+
+Similarly when the transition is from OFF to ON state, due to uneven distribution of the current through the area of the switch overheating will takes place and eventually it will be burned. Here also snubber is necessary to reduce the current at starting by making an alternate path.\\
+
+Snubbers in switching mode provides one or more of the following functions :
+\begin{itemize}
+	\item Shape the load line of a bipolar switching transistor to keep it in its safe operating area.
+	\item Reducing the voltages and currents during turn-ON and turn-OFF transient conditions.
+	\item Removes energy from a switching transistor and dissipate the energy in a resistor to reduce junction temperature.
+	\item Limiting the rate of change of voltage and currents during the transients.
+	\item Reduce ringing to limit the peak voltage on a switching transistor and lowering their frequency.
+\end{itemize}
+
+\subsection{Devices Used}
+\subsubsection*{Fan (AA1282HB-AT - Axial Fan, AA12038 Series, 230 V, AC)}
+
+\begin{wrapfigure}{r}{0.3\textwidth}
+	\includegraphics[width=0.3\textwidth]{photos/theory/aa1282hb.jpg}
+	\caption{AC Axial Fan}
+\end{wrapfigure}
+
+The AA1282HB-AT is a 230VAC high speed Axial Fan with 2-ball bearing and terminal power connection. High quality aluminum die casting frame flatted with black paint and black PBT plastic with glass fiber impeller. Counter-clockwise direction of rotation looking at rotor, shaded pole induction motor structure.
+
+\begin{itemize}
+\item UL94V-0 Flammability rating
+
+\item	2700RPM Speed rating
+\item	-10 to 70$^\circ$C Operating temperature range
+\item	20.8W Rated power
+\item	0.31" Aq Maximum pressure
+\item	100M{\si\ohm} or more at 500VDC (between lead wire and frame) Insulation resistance
+\item	1500VAC for one minute to base on UL507 Dielectric strength
+2700RPM Speed rating
+\item	-10 to 70$^\circ$C Operating temperature range
+\item 20.8W Rated power
+\item 0.31" Aq Maximum pressure
+\item	100M{\si\ohm} or more at 500VDC (between lead wire and frame) Insulation resistance
+\item	1500VAC for one minute to base on UL507 Dielectric strength
+
+\end{itemize}
+\subsubsection{Bulb (15W, 230V)} 
+
+\begin{wrapfigure}{r}{0.3\textwidth}
+	\includegraphics[width=0.3\textwidth]{photos/theory/bulb.jpg}
+	\caption{Incadescent Lamp}
+\end{wrapfigure}
+
+An incandescent light bulb, incandescent lamp or incandescent light globe is an electric light with a wire filament heated to such a high temperature that it glows with visible light (incandescence). The filament is protected from oxidation with a glass or fused quartz bulb that is filled with inert gas or a vacuum. In a halogen lamp, filament evaporation is slowed by a chemical process that redeposits metal vapor onto the filament, thereby extending its life.\\
+
+The light bulb is supplied with electric current by feed-through terminals or wires embedded in the glass. Most bulbs are used in a socket which provides mechanical support and electrical connections. Incandescent bulbs are manufactured in a wide range of sizes, light output, and voltage ratings, from 1.5 volts to about 300 volts. They require no external regulating equipment, have low manufacturing costs, and work equally well on either alternating current or direct current. As a result, the incandescent bulb is widely used in household and commercial lighting, for portable lighting such as table lamps, car headlamps, and flashlights, and for decorative and advertising lighting.
+
+\subsubsection*{Smart Switch}
+
+%\end{comment}
+        \section{Realistic Constraints}
+        \begin{itemize}
+      \item  Although the project will be designed with a modular approach with scope of future expansibility, it will be demonstrated on a much smaller scale, due to a lack of infrastructure and budget.
+
+		\item Plug and Play modules with fine level of control will be developed only for Lights, Fans due to lack of budget and time. Rest of the devices will be controlled in only an On/Off state.
+		
+		\item Testing of the modules will be limited to the devices available in the institute.
+        \end{itemize}
+        
+        
+        
+        \section{Technical Standards Used}
+        \begin{description}
+        	\item[IEEE802.11] Standard for Wi-Fi
+        	\item[P2413] Standard for an Architectural Framework for the Internet of Things (IoT)
+        	\item[2755-2017]  IEEE guide for terms and concepts in Intelligent Process Automation
+\item[IEEE 61850-9-3-2016] International Standard for communication networks and systems for power utility automation
+\item[IEEE 802.15.4] Wireless sensor/control networks.
+\item[IEEE 1016] Software design description.
+
+        \end{description}

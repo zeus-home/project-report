@@ -1,5 +1,17 @@
 \chapter{Introduction}
         \section{Introduction}
+        This project focuses on providing automated control of the existing home appliances by adding a control circuitry to the existing devices. The devices are controlled using wireless communication over the internet by microcontrollers. An app-driven remote control is provided for user interaction. \\
+        
+        Key Features :
+        \begin{enumerate}
+        \item Novel Internet of Things (IoT)-enabled modules to attach to a home existing commonly used electric appliances, and connecting these individual appliances with the single board computer(controlling unit). 
+		\item Built-in protection circuitry will trigger initial preventive measures in case of an anomaly.
+		\item The unique feature about the switch board is that the circuit is isolated using optcouplers at every portion so that the rest of the circuit is unaffected in case of fault.
+		\item This switch board will allow users to manage individual devices via a remote management application on their smartphones.
+		\item The development of a user-friendly application facilitating interaction with the system. For instance, the appliances will be accessible via apps developed for mobile devices and laptops.
+		\item A modular design philosophy will be followed while designing the system. This will enable users to pick and choose the selected functionality they want to add to their house, based on their requirements and monetary capability. The user can also add functionality over an extended span of time.
+
+        \end{enumerate}
         \section{Literature Survey}
         	\subsection{National Status Review}
         	\begin{itemize}
@@ -27,27 +39,28 @@
         	The currently available solution and research exhibit these features
         	\begin{itemize}
         		\item The existing market solutions provide on/off switching of the devices. The available solutions provide comparatively lower energy efficiency and also require human intervention to achieve desired conditioning of the environment.
-        		\item Some of them also use unsuitable technologies like Power Line Communications, Bluetooth and Ethernet etc. From the present analysis of the existing solutions for automating a room environment, the technologies used suffer from a number of drawbacks. So, these protocols are limited in functionalities when used by an end user in real life.
+        		\item Some of them also use unsuitable technologies like Bluetooth, Ethernet etc. From the present analysis of the existing solutions for automating a room environment, the technologies used suffer from a number of drawbacks. So, these protocols are limited in functionalities when used by an end user in real life.
         	\end{itemize}
         	
         \section{Aim}
-        	The project aims to manage and control existing devices through a Home Automation Unit accessible over the internet.
-        	The project aims to increase the energy efficiency of a household by converting primitive devices into smart devices and managing them using a self-evolving deep learning model.
-        \section{Objectives}
+        	The project aims to manage and control existing devices through a smart switchboard accessible over the internet.
+        	        \section{Objectives}
 	        \begin{itemize}
-	        	\item To detect changes in the environment of rooms using different sensors.
-	        	\item To develop plug and play device control techniques to manage home appliances.
-	        	\item To optimize energy consumption to increase the efficiency of the household.
-	        	\item To design a central processing hub for management of modules and execution of control algorithms.
+	        	\item To develop driver circuits for controlling the devices inside a room
+
+                 \item To develop software programs for the microcontroller to operate the driver circuits.
+
+                  \item To design mobile applications for users to control the devices over the internet.
+	        	
 	        \end{itemize}
         \section{Problem Formulation}
+        In the present day scenario user conform and convenience is the main target for the product developers. The present conventional devices installed and their manual control does not provide benefit for monitoring and controlling them, when a person is away from home. This leads to large power losses due to unnecessary operation of the devices. This can even cause major damages to life and property if not handled properly. Also, existing commercial solutions in the market provide entire new smart devices which requires users to replace the existing devices incurring huge costs. 
         \section{Deliverables}
         	\begin{itemize}
-        		\item Sensor modules to collect room environment parameters.
-        		\item Plug and Play actuator modules to control household devices.
-        		\item Load Optimization Algorithm based on deep reinforcement learning models
-        		\item Home Automation Unit to manage the devices and execute control algorithms and associated mobile applications.		
+        		\item A compact and efficient Smart Switch Board is developed.
+
+                 \item A user-friendly mobile application is developed for operating different appliances installed inside the room.
         	\end{itemize}
         \section{Novelty of work}
-        	Higher levels of controllability can be achieved through individual device level control such as for an AC the temperature, modes, swing, fan speed etc. can be controlled. Load optimization will be carried out from the evaluation of the usage patterns of the individual devices thus increasing the energy efficiency. 
+        Devices can be controlled over the internet through mobile or desktop applications. Due to the use of Power Electronics devices for the voltage control, there are negligible losses incurred. The switches are formed in a modular fashion providing user to add new devices over time. Higher levels of controllability could be achieved through individual device level control.	
     
