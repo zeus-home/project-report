@@ -1,27 +1,29 @@
 \chapter{Theory, Standards and Constraints}
         \section{Theory}
-\begin{comment}
         
-        The increasing pollution and degradation of environment due to the conventional energy sources have made it imperative for us to switch to renewable energy sources. But their adoption has not received the fraction it ideally should. India currently fulfils 18.37\% of its power needs from renewable sources but plans to increase this share to 40\% by 2030. The adoption of these sources has always drawn scepticism from consumers, as one cannot completely rely on them, especially for going completely off-grid.\\
-        For such a vision to actually realise, we need to overcome the biggest drawbacks of renewable energy
-        source, its reliability. So this project aims to formulate and implement machine learning methods to predict the generation and optimize the consumption in the household to ensure reliability and increased efficiency of the whole system.
+        The schematic consists of three main components working in conjugation to provide internet of things enabled device control.
         
-        The project will focus on the more efficient domestic use of energy generated from renewable sources. For this, the project will employ a data-driven approach calculating the power consumptions of each and every home appliance and prioritizing the duration and time of usage of each appliance through self-learning algorithms in order to minimize the power requirements at all times of the day also ensuring user convenience. At the moments of peak requirements, some devices could be shut off considering no immediate requirements of the device and they could operate when the load requirements are lower. For instance, the system will ensure a minimum permissible lighting in case of peak power requirements and switch off the remaining lights, also the temperature of the ac could be optimized automatically to an intermediate temperature level where the power consumptions are low so that load is satisfied and also user comfort is ensured. Similar commercial systems currently exist, but are prohibitively expensive and designed for grid-provided power.
-        To remove the entry barrier for customers to the smart-home market, novel Internet of Things (IoT)-enabled modules will be designed which will attach to a house's existing commonly used electric appliances and connect these individual appliances with the local HAS network. These modules will be plug and play setup kits eliminating the need for purchase of special smart devices and also enhance the security in a house.
-        Development of a Machine-Learning (ML)-based demand-response set-up to predict power generation by the off-grid apparatus which will be used by algorithms to optimize device energy consumption to achieve maximum throughput. Renewable energy sources are somewhat cyclical and unpredictable. An accurate demand-prediction model thus developed will enhance the robustness of the system against varying electricity supply. This will increase the longevity of the energy storage systems used in renewable energy systems, by balancing the discharge and recharge cycles. From the analysis of the individual usage of various appliances, the HAS could power down idle devices to save energy.
-        Sensors around the house will monitor variables such as user presence, temperature and illumination, and turn on specific devices to increase convenience and ease of usage, according to predefined and self-evolving algorithms customized for an individual user.
-        The development of a user-friendly application facilitating interaction with the system will be done. For instance, the appliances will be accessible via apps developed for mobile devices and laptops. A touch-screen kiosk will also be designed as an alternative to the conventional switchboards. This kiosk will provide access to the HAS interface in every room, with additional information received by the sensors around the house.
-        An Application Programming Interface (API) will be developed to allow third-party developers to manufacture compatible devices that can be easily integrated with this HAS. This API will a) enable new devices to communicate with other devices and programs on the HAS, by sending and receiving operation parameters, such as readings from other sensors; and b) also make the overall system extensible, and create an ecosystem for additional devices (analogous to the Android SDK for third-party applications on the Android platform).
-        Everything will be designed with a modular design approach, allowing the users to pick and choose the
-        selected functionality they want to add to their house, based on their personal requirements and monetary capability. The users will also be able to add functionality over an extended span of time, enhancing the viability of this project and long-term relevance of the project.
-        This project has the potential to develop a standardised systems framework that will facilitate the adoption of smart technologies (sensors; IoT) in existing domestic situations, which is user-friendly, cost-effective and capable of being controlled from widely-used devices (smartphones). The modular design will allow people to choose from simple power measurement mechanisms and warning system to completely intelligent IoT driven full automation. Depending on the investment capability, the people can move progressively from simplest to most complex system implementation incrementally over few years.
-        Specifically designed to be used in areas where power is generated from off-grid, renewable sources, the project has the potential to be scalable and replicable in other regions of the country. Commercial delivery options will be one of the main project aims. The opportunity of commercialization of the concept will further enhance the scalability of the project work.
+        \subsection{5V Power Supply}
+        	A 5V Power supply is designed to provide uninterrupted mains supply to the microcontroller.\\
+        	The 230V AC Mains is converted to a 13V AC signal using a Step Down Transformer. The transformer also provides isolation to the circuit. This stepped down voltage is passed through a bridge rectifier to convert it into a pulsating DC output. This DC supply cannot be reliably without converting removing ripples from the output and thereafter regulating the output. Hence, this output is connected to a LM7805 5V Voltage Regulator in parallel with 2200 \si\micro f and a 470 \si\micro f capacitors. This stabilises the output and reduces the input ripples to almost zero.
+        	
+        	\begin{figure}[h!]
+        		\includegraphics[width=\textwidth]{photos/ckt-dgm/5VDCPowerSupply.jpg}
+        		\caption{5V DC Power Supply}
+        	\end{figure}
+        	
+        \subsection{Phase Angle Control}
+        	Phase angle control is a simple AC-AC conversion technique used to convert an input AC RMS Voltage to a reduced RMS value.\\
+        	It uses a low frequency switch to chop the AC sine wave. The reduced output voltage is controlled using a quantity known as the \textbf{Firing Angle}. The firing angle determines when the Sine Wave is chopped.\\
+        	The output voltage is calculated by the determinig the area under the curve, hence the integral of a sine wave from the firing angle to the zero crossing angle.\\
+        	There are a variety of benefits of this approach:
+        	\begin{itemize}
+        		\item This allows the use of a low frequency switch, in our case a Triac.
+        		\item A Triac can sustain higher power output
+        	\end{itemize}
+        	
         
-        \end{comment}
-      
-%       \begin{comment}
-        
-        \subsection{ESP8266}
+    \subsection{ESP8266}
         \begin{wrapfigure}{r}{0.3\textwidth}
         	\includegraphics[width=0.3\textwidth]{photos/theory/esp8266.jpg}
         	\caption{ESP8266 Wifi Microcontroller}
@@ -129,7 +131,6 @@ The light bulb is supplied with electric current by feed-through terminals or wi
 
 \subsubsection*{Smart Switch}
 
-%\end{comment}
         \section{Realistic Constraints}
         \begin{itemize}
       \item  Although the project will be designed with a modular approach with scope of future expansibility, it will be demonstrated on a much smaller scale, due to a lack of infrastructure and budget.
