@@ -2,24 +2,25 @@
         \section{Results and Discussion}
         
         \begin{figure}[h!]
-        	\includegraphics[width=\textwidth]{photos/results/InterruptTriggerofmicrocontroller.jpg}
+        	\centering
+        	\includegraphics[width=0.8\textwidth]{photos/results/InterruptTriggerofmicrocontroller.jpg}
         	\caption{Gate signal for the driver circuit}
         \end{figure}
-	    \begin{figure}[h!]
-	    	\includegraphics[width=\textwidth]{photos/results/ZeroCrossingCircuitWaveform.jpg}
+	    \begin{figure}[H]
+	    	\centering
+	    	\includegraphics[width=0.8\textwidth]{photos/results/ZeroCrossingCircuitWaveform.jpg}
 	    	\caption{Shifted Firing pulses lead to reduced apparent voltage}
 	    \end{figure}
-        \begin{figure}[h!]
-        	\includegraphics[width=\textwidth]{photos/results/RectifiedOutputVoltage.jpg}
+        \begin{figure}[H]
+        	\centering
+        	\includegraphics[width=0.8\textwidth]{photos/results/RectifiedOutputVoltage.jpg}
         	\caption{Rectified Output for Zero Detection}
         \end{figure}
+    \newpage
         \section{Justification of objectives achieved}
          \begin{enumerate}
-         \item With the help of power electronics devices such as triac, optocoupler etc., we designed the control circuitry for controlling the speed of fan, brightness of lights etc. We have also provided socket (Switch On/Off) for external device connection. A ripple free constant power supply of 5V for power supply of the microcontroller is designed using full bridge rectifier and smoothing capacitors. A zero cross detection circuit is also designed for detection of zero instant of the AC mains so that a reliable firing pulse can be generated from microcontroller in order to control the appliances.
-
-\item Programming of the microcontroller is done on NodeMCU platform. The coding of the microcontroller is done in C++ language. The program formed allows the microcontroller to generate PWM gating pulses based on the user input to achieve the desired output by the user.
-\item   For the user interaction mobile applications enlisting rooms of each household. The rooms are further divided into lists of appliances which provides control over the devices to the user over the internet. The application is made simple and handy for the user to access easily.
-
-
+	         \item With the help of power electronics devices such as triac, optocoupler etc., we designed the control circuitry for controlling the speed of fan, brightness of lights etc. We have also provided socket (Switch On/Off) for external device connection. A ripple free constant power supply of 5V for power supply of the microcontroller is designed using full bridge rectifier and smoothing capacitors. A zero cross detection circuit is also designed for detection of zero instant of the AC mains so that a reliable firing pulse can be generated from microcontroller in order to control the appliances.
+			\item Programming of the microcontroller is done on NodeMCU platform. The coding of the microcontroller is done in C++ language. The program formed allows the microcontroller to generate PWM gating pulses based on the user input to achieve the desired output by the user.
+			\item For the user interaction mobile applications enlisting rooms of each household. The rooms are further divided into lists of appliances which provides control over the devices to the user over the internet. The application is made simple and handy for the user to access easily.
          \end{enumerate}
    

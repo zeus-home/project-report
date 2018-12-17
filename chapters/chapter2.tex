@@ -1,27 +1,65 @@
 \chapter{Theory, Standards and Constraints}
         \section{Theory}
         
-        The schematic consists of three main components working in conjugation to provide internet of things enabled device control.
-        
-        \subsection{5V Power Supply}
-        	A 5V Power supply is designed to provide uninterrupted mains supply to the microcontroller.\\
-        	The 230V AC Mains is converted to a 13V AC signal using a Step Down Transformer. The transformer also provides isolation to the circuit. This stepped down voltage is passed through a bridge rectifier to convert it into a pulsating DC output. This DC supply cannot be reliably without converting removing ripples from the output and thereafter regulating the output. Hence, this output is connected to a LM7805 5V Voltage Regulator in parallel with 2200 \si\micro f and a 470 \si\micro f capacitors. This stabilises the output and reduces the input ripples to almost zero.
-        	
-        	\begin{figure}[h!]
-        		\includegraphics[width=\textwidth]{photos/ckt-dgm/5VDCPowerSupply.jpg}
-        		\caption{5V DC Power Supply}
-        	\end{figure}
-        	
         \subsection{Phase Angle Control}
-        	Phase angle control is a simple AC-AC conversion technique used to convert an input AC RMS Voltage to a reduced RMS value.\\
-        	It uses a low frequency switch to chop the AC sine wave. The reduced output voltage is controlled using a quantity known as the \textbf{Firing Angle}. The firing angle determines when the Sine Wave is chopped.\\
-        	The output voltage is calculated by the determinig the area under the curve, hence the integral of a sine wave from the firing angle to the zero crossing angle.\\
-        	There are a variety of benefits of this approach:
+        	
+        	Phase angle control is a simple AC-AC conversion technique used to convert an input AC RMS Voltage to a reduced RMS value. It uses a low frequency switch to chop the AC sine wave. The reduced output voltage is controlled using a quantity known as the Firing Angle. The firing angle controls the output of the sine wave using delayed firing of the switching elements (triac, SCR etc.) ensuring the magnitude of AC rms signal is reduced. The output voltage is calculated by the determining the area under the curve, the subsequent increase in the firing angle leads to decrease in value of rms and hence the brightness of light or speed of fan can be controlled.\\
+        	
+        	
+        	\begin{wrapfigure}{l}{0.45\textwidth}
+        		\includegraphics[width=0.45\textwidth]{photos/theory/rms_output.png}
+        		\caption{Variation in RMS Voltage Output with the Firing Angle}
+        	\end{wrapfigure}
+        	There are a variety of \textbf{advantages} of this approach:\\
         	\begin{itemize}
-        		\item This allows the use of a low frequency switch, in our case a Triac.
-        		\item A Triac can sustain higher power output
+        		\item It uses simple voltage control to operate the devices at varied brightness and speeds.
+        		\item This allows the use of a low frequency switch, in our case a Triac. These low frequency switches have much higher ratings and can be applied directly to the power circuit.
+        		\item This allows for a very fine control over the voltage values and thus numerous steps for variation in device parameters can be provided.
         	\end{itemize}
         	
+        	\textbf{Disadvantages} of the approach can be:
+        	\begin{itemize}
+        		\item Harmonic inclusion in the AC waveform leading to shortening of life of devices.
+        		\item Reliability of the controlling switches is reduced as the switching does not occur at zero voltages and currents.
+       		\end{itemize}
+       	
+        	The following graphs show the variation in Output Voltage waveform with subsequent increase in firing angle. The following data is represented from the above graphs:
+        	\begin{enumerate}
+        		\item Input Voltage Waveform
+        		\item Zero Cross Detection 
+        		\item Firing Pulse
+        		\item Output Voltage Waveform
+        	\end{enumerate}
+        
+        	\begin{figure}[h!]
+        		\centering
+        		\includegraphics[width=0.8\textwidth]{photos/theory/pac_30.png}
+        		\caption{Variation in voltage waveforms for $\alpha$ = \ang{30}}
+        	\end{figure}
+	        \begin{figure}[h!]
+	        	\centering
+	        	\includegraphics[width=0.8\textwidth]{photos/theory/pac_90.png}
+	        	\caption{Variation in voltage waveforms for $\alpha$ = \ang{90}}
+	        \end{figure}
+		    \begin{figure}[h!]
+		    	\centering
+		    	\includegraphics[width=0.8\textwidth]{photos/theory/pac_120.png}
+		    	\caption{Variation in voltage waveforms for $\alpha$ = \ang{120}}
+		    \end{figure}
+	
+
+			        
+        \subsection{5V Power Supply}
+        A 5V Power supply is designed to provide uninterrupted mains supply to the microcontroller.\\
+        The 230V AC Mains is converted to a 13V AC signal using a Step Down Transformer. The transformer also provides isolation to the circuit. This stepped down voltage is passed through a bridge rectifier to convert it into a pulsating DC output. This DC supply cannot be reliably without converting removing ripples from the output and thereafter regulating the output. Hence, this output is connected to a LM7805 5V Voltage Regulator in parallel with 2200 \si\micro f and a 470 \si\micro f capacitors. This stabilises the output and reduces the input ripples to almost zero.
+        
+        \begin{figure}[h!]
+        	\centering        	\includegraphics[width=0.8\textwidth]{photos/ckt-dgm/5VDCPowerSupply.jpg}
+        	\caption{5V DC Power Supply}
+        \end{figure}
+    
+    	\subsection{Zero Crossing Detection Circuit}
+    	A zero cross detection circuit is a type of voltage comparator which locates point of zero voltage. In this circuit, a transistor based opto-isolator IC (4N25) is used with rectifier voltage pulse of 100 Hz provided at the input pins. The location of zero point is necessary for following the rectified voltage waveform of the circuit in order to fire the triac at required phase angles. The microcontroller (ESP8266) fires interrupts upon receiving signals from the zero crossing circuit marking the starting point of the counter timer. Now, by calculating the time corresponding to the input firing angle the pulse is fired providing gate signal to the triac, thereby turning it ON.
         
     \subsection{ESP8266}
         \begin{wrapfigure}{r}{0.3\textwidth}
@@ -29,27 +67,30 @@
         	\caption{ESP8266 Wifi Microcontroller}
         \end{wrapfigure}
     
-        The ESP8266 WiFi Module has a self contained SOC with an integration of TCP/IP protocol stack which can provide any microcontroller access to the Wifi network. The ESP8266 has the potential of either hosting an application or offloading all Wi-Fi networking functions from another application processor. Each ESP8266 module comes pre-programmed with an AT command set firmware, meaning, you can simply hook this up to your Arduino device and get about as much WiFi-ability as a WiFi Shield offers (and that just out of the box). The ESP8266 module is an extremely cost effective board with a huge, and ever growing, community.\\
+        The ESP8266 WiFi Module has a self contained SoC with an integrated TCP/IP protocol stack which provides it access to a Wi-Fi network. The ESP8266 has the potential of either hosting an application or offloading all Wi-Fi networking functions from another application processor. The ESP8266 module is an extremely cost effective board with a huge, and ever growing, community.\\
+        This module has a powerful on-board 32-bit processor with storage capability that allows it to be integrated in various applications. Its high degree of on-chip integration allows for minimal external circuitry, including the front-end module.\\
         
-        This module has a powerful enough on-board processing and storage capability that allows it to be integrated with the sensors and other application specific devices through its GPIOs with minimal development up-front and minimal loading during runtime. Its high degree of on-chip integration allows for minimal external circuitry, including the front-end module, is designed to occupy minimal PCB area. The ESP8266 supports APSD for VoIP applications and Bluetooth co-existance interfaces, it contains a self-calibrated RF allowing it to work under all operating conditions, and requires no external RF parts.
 \subsection{Triac}
-The TRIAC is an ideal device to use for AC switching applications because it can control the current flow over both halves of an alternating cycle. A thyristor is only able to control them over one half of a cycle. During the remaining half no conduction occurs and accordingly only half the waveform can be utilised.\\
-
+The Triac is a power electronic device that is used in AC switching application. Since it consists of two thyristors connected back-to-back (in other words, anti-parallel) but on the single piece of silicon so it controls the flow of current in both half cycle of alternating current. \\
 \begin{wrapfigure}{r}{0.3\textwidth}
 	\includegraphics[width=0.3\textwidth]{photos/theory/bt136.jpg}
 	\caption{Triac BT136}
 \end{wrapfigure}
-Seen from the outside it may be viewed as two back to back thyristors and this is what the circuit symbol indicates.On the TRIAC symbol there are three terminals. These are the Gate and two other terminals are often referred to as an "Anode" or "Main Terminal". As the TRIAC has two of these they are labelled either Anode 1 and Anode 2 or Main Terminal, MT1 and MT2.
-The TRIAC is a component that is effectively based on the thyristor. It provides AC switching for electrical systems. Like the thyristor, the TRIACs are used in many electrical switching applications. They find particular use for circuits in light dimmers, etc., where they enable both halves of the AC cycle to be used. This makes them more efficient in terms of the usage of the power available. While it is possible to use two thyristors back to back, this is not always cost effective for low cost and relatively low power applications.
+Similar to that of the thyristor, the TRIAC also have three terminals namely MT1, MT2 and gate terminal. For the first half cycle MT1 act as anode terminal and MT2 terminal act as cathode terminal and for the next half cycle reverse is the case. However, the gate terminal is fixed and it receives the gating pulse for the TRIAC in both half cycle thus making it capable of controlling the flow of current.\\
+Just like thyristor, the TRIAC also needs a minimum value of gate current called as latching current. So the gating pulse must be applied till the anode current go beyond latching current after which the pulse can be removed in order to reduce losses. \\
+The TRIAC turns off automatically when the current in the circuit goes below holding current and when the gating pulse is again given in the next half cycle, TRIAC start conducting. This process keeps on going. And thus, the RMS value of output voltage is controlled by changing the delay angle or firing angle of the TRIAC.
+Here in our project, the TRIAC is used in Controlling the brightness of lamp and speed of the fan.\\
 
-\subsection{MOC3021 and MOC3041 Optocouplers}
-An opto-isolator (also called an optocoupler, photocoupler, or optical isolator) is an electronic component that transfers electrical signalsbetween two isolated circuits by using light. Opto-isolators prevent high voltages from affecting the system receiving the signal.Commercially available opto-isolators withstand input-to-output voltages up to 10 kV and voltage transients with speeds up to 25 kV/$ \si\micro $s.\\
-\begin{wrapfigure}{r}{0.3\textwidth}
+\subsection{Optocouplers}
+\begin{wrapfigure}{l}{0.3\textwidth}
 	\includegraphics[width=0.3\textwidth]{photos/theory/moc3021.jpg}
 	\caption{Optocoupler MOC3021}
 \end{wrapfigure}
-A common type of opto-isolator consists of an LED and a phototransistor in the same opaque package. Other types of source-sensor combinations include LED-photodiode, LED-LASCR, and lamp-photoresistor pairs. Usually opto-isolators transfer digital (on-off) signals, but some techniques allow them to be used with analog signals.
-An opto-isolator contains a source (emitter) of light, almost always a near infrared light-emitting diode (LED), that converts electrical input signal into light, a closed optical channel (also called dielectrical channel[7]), and a photosensor, which detects incoming light and either generates electric energy directly, or modulates electric current flowing from an external power supply. The sensor can be a photoresistor, a photodiode, a phototransistor, a silicon-controlled rectifier (SCR) or a triac. Because LEDs can sense light in addition to emitting it, construction of symmetrical, bidirectional opto-isolators is possible. An optocoupled solid-state relay contains a photodiode opto-isolator which drives a power switch, usually a complementary pair of MOSFETs. A slotted optical switch contains a source of light and a sensor, but its optical channel is open, allowing modulation of light by external objects obstructing the path of light or reflecting light into the sensor.
+Optocoupler is an electronic component that is used to isolate circuits on PCB. It consists of two parts: an LED which receives the pulse and emits the Infrared light and the other is a photosensitive TRIAC which senses the radiation from LED and undergoes conduction. Thus, in turn, it produces a gating signal for the TRIAC of the main power circuit. As soon as the main TRIAC receives this signal it starts conducting. Now the firing pulse given to the TRIAC can be controlled by controlling the pulse firing delay given to the diode of the optocoupler.\\
+When the pulse is removed, the currents flowing through the LED of optocoupler becomes zero and the photosensitive device i.e. TRIAC inside the optocoupler stops conducting thus making the whole circuit inoperative. \\
+There are further other benefits of using an optocoupler which includes the removal of electrical noise. It also isolates the low-voltage side from the high-voltage side in the circuits.\\
+Here in our project we have used two different optocoupler namely MOC3021, which is used to generate the firing pulse for TRIAC which in turn help in controlling the AC output waveform and the other one is MOC3041 which contains a Zero-Crossing Circuit inside it thus making it suitable for ON/OFF application as it generates the firing pulse at the instant when AC signal crosses the zero instant thus reducing the chances of a sudden large rise in current. \\
+We also have to take care of the maximum amount of current that the LED inside optocoupler will withstand and hence a proper calculation is made to find out the value of limiting resistor as the peak value input pulse at the terminal of the diode is 3.3v which will be given by the microcontroller in our application.  \\
 
 \subsection{L7805 Voltage Regulator}
 
@@ -58,7 +99,10 @@ An opto-isolator contains a source (emitter) of light, almost always a near infr
 	\caption{5V Voltage Regulator LM7805}
 \end{wrapfigure}
 
-Voltage sources in a circuit may have fluctuations resulting in not providing fixed voltage outputs. A voltage regulator IC maintains the output voltage at a constant value. 7805 IC, a member of 78xx series of fixed linear voltage regulators used to maintain such fluctuations, is a popular voltage regulator integrated circuit (IC). The xx in 78xx indicates the output voltage it provides. 7805 IC provides +5 volts regulated power supply with provisions to add a heat sink.\\
+The Voltage regulator is used to regulate the input voltage to it to a fixed value. Thus it maintains fixed and hence smooth output voltage regardless of the input voltage.\\
+The voltage equivalent to the difference of input and output is released as heat. So the greater is the difference, the more will be the heat that is released. Now in order to dissipate the heat, and to prevent the thermal breakdown of the material used inside the voltage regulator, we do use a heat sink. Thus the heat sink helps in ensuring the proper operation of the voltage regulator.\\  
+There are further other benefits of the voltage regulator as it shields and protects the electronic circuitry from any potential damage.\\
+Here in our project, we have used voltage regulator 7805 as we need a smooth 5v dc output in order to power up the microcontroller. Also, we need to take care of the input voltage appearing at the terminal of voltage regulator so that the difference in voltage must not be very large. Also, the input voltage must be greater than 7v as according to the datasheet of 7805, the minimum voltage needed at the input terminal to regulate it to 5v is 7v.\\
 
 \textbf{7805 Rating}
 \begin{itemize}
@@ -67,71 +111,18 @@ Voltage sources in a circuit may have fluctuations resulting in not providing fi
 	\item Output voltage range   V{max}=5.2V ,V{min}=4.8V
 \end{itemize}
 
-This difference between the input and output voltage is released as heat. The greater the difference between the input and output voltage, more the heat generated. If the regulator does not have a heat sink to dissipate this heat, it can get destroyed and malfunction. Hence, it is advisable to limit the voltage to a maximum of 2-3 volts above the output voltage.
 
 \subsection{Snubber Circuit}
-\begin{wrapfigure}{r}{0.3\textwidth}
-	\includegraphics[width=0.3\textwidth]{photos/theory/snubber.jpg}
+Due to various conditions that generally occurs in electrical and electronics circuits like overcurrent, overvoltage, a large change in the difference of voltage etc., the components in the circuits may get fails. Now we need to protect our circuit from such anomalies. So for the protection against overcurrent, we do use fuse, heat sinks are used to dissipate the heat generated due to an excessive change in voltage.\\
+\begin{wrapfigure}{l}{0.25\textwidth}
+	\includegraphics[width=0.25\textwidth]{photos/theory/snubber.jpg}
 	\caption{A RC Snubber Circuit}
 \end{wrapfigure}
-Due to overheating, over voltage, over current or excessive change in voltage or current switching devices and circuit components may fail. From over current they can be protected by placing fuses at suitable locations. Heat sinks and fans can be used to take the excess heat away from switching devices and other components. Snubber circuits are needed to limit the rate of change in voltage or current (di/dt or dv/dt) and over voltage during turn-on and turn-off. \\
 
-These are placed across the semiconductor devices for protection as well as to improve the performance. Static dv/dt is a measure of the ability of a thyristor to retain a blocking state under the influence of a voltage transient. These are also used across the relays and switches to prevent arcing.\\
+Now there appear some cases where there is a sudden rise in current(di/dt) and a sudden rise in voltage(dv/dt). These spikes are very dangerous and can burn the semiconductor devices connected in the circuit. So in order to protect the circuit against these two conditions of sudden rise we do use snubber circuit. \\
+Snubber circuit basically has an inductor in series and capacitor in parallel along with a series resistance. The series inductor protects the circuit against the sudden rise in voltage. This is because of the property of the property of inductor which opposes the sudden rise in current. Also, the capacitor helps in protecting the circuit against the sudden rise in voltage. This is because of the property of capacitor which opposes the sudden rise in the voltage. Also, a series resistance is connected in series with the capacitor to limit the discharging current of the capacitor so that the current in the switch due to capacitor do not lead to an overcurrent condition in through the switch when it is operated. \\
 
-These are placed across the various switching devices like transistors, thyristors, etc. Switching from ON to OFF state results the impedance of the device suddenly changes to the high value. But this allows a small current to flow through the switch. This induces a large voltage across the device. If this current reduced at faster rate more is the induced voltage across the device and also if the switch is not capable of withstanding this voltage the switch becomes burn out. So auxiliary path is needed to prevent this high induced voltage. \\
-
-Similarly when the transition is from OFF to ON state, due to uneven distribution of the current through the area of the switch overheating will takes place and eventually it will be burned. Here also snubber is necessary to reduce the current at starting by making an alternate path.\\
-
-Snubbers in switching mode provides one or more of the following functions :
-\begin{itemize}
-	\item Shape the load line of a bipolar switching transistor to keep it in its safe operating area.
-	\item Reducing the voltages and currents during turn-ON and turn-OFF transient conditions.
-	\item Removes energy from a switching transistor and dissipate the energy in a resistor to reduce junction temperature.
-	\item Limiting the rate of change of voltage and currents during the transients.
-	\item Reduce ringing to limit the peak voltage on a switching transistor and lowering their frequency.
-\end{itemize}
-
-\subsection{Devices Used}
-\subsubsection*{Fan (AA1282HB-AT - Axial Fan, AA12038 Series, 230 V, AC)}
-
-\begin{wrapfigure}{r}{0.3\textwidth}
-	\includegraphics[width=0.3\textwidth]{photos/theory/aa1282hb.jpg}
-	\caption{AC Axial Fan}
-\end{wrapfigure}
-
-The AA1282HB-AT is a 230VAC high speed Axial Fan with 2-ball bearing and terminal power connection. High quality aluminum die casting frame flatted with black paint and black PBT plastic with glass fiber impeller. Counter-clockwise direction of rotation looking at rotor, shaded pole induction motor structure.
-
-\begin{itemize}
-\item UL94V-0 Flammability rating
-
-\item	2700RPM Speed rating
-\item	-10 to 70$^\circ$C Operating temperature range
-\item	20.8W Rated power
-\item	0.31" Aq Maximum pressure
-\item	100M{\si\ohm} or more at 500VDC (between lead wire and frame) Insulation resistance
-\item	1500VAC for one minute to base on UL507 Dielectric strength
-2700RPM Speed rating
-\item	-10 to 70$^\circ$C Operating temperature range
-\item 20.8W Rated power
-\item 0.31" Aq Maximum pressure
-\item	100M{\si\ohm} or more at 500VDC (between lead wire and frame) Insulation resistance
-\item	1500VAC for one minute to base on UL507 Dielectric strength
-
-\end{itemize}
-\subsubsection{Bulb (15W, 230V)} 
-
-\begin{wrapfigure}{r}{0.3\textwidth}
-	\includegraphics[width=0.3\textwidth]{photos/theory/bulb.jpg}
-	\caption{Incadescent Lamp}
-\end{wrapfigure}
-
-An incandescent light bulb, incandescent lamp or incandescent light globe is an electric light with a wire filament heated to such a high temperature that it glows with visible light (incandescence). The filament is protected from oxidation with a glass or fused quartz bulb that is filled with inert gas or a vacuum. In a halogen lamp, filament evaporation is slowed by a chemical process that redeposits metal vapor onto the filament, thereby extending its life.\\
-
-The light bulb is supplied with electric current by feed-through terminals or wires embedded in the glass. Most bulbs are used in a socket which provides mechanical support and electrical connections. Incandescent bulbs are manufactured in a wide range of sizes, light output, and voltage ratings, from 1.5 volts to about 300 volts. They require no external regulating equipment, have low manufacturing costs, and work equally well on either alternating current or direct current. As a result, the incandescent bulb is widely used in household and commercial lighting, for portable lighting such as table lamps, car headlamps, and flashlights, and for decorative and advertising lighting.
-
-\subsubsection*{Smart Switch}
-
-        \section{Realistic Constraints}
+\section{Realistic Constraints}
         \begin{itemize}
       \item  Although the project will be designed with a modular approach with scope of future expansibility, it will be demonstrated on a much smaller scale, due to a lack of infrastructure and budget.
 
@@ -140,15 +131,12 @@ The light bulb is supplied with electric current by feed-through terminals or wi
 		\item Testing of the modules will be limited to the devices available in the institute.
         \end{itemize}
         
-        
-        
         \section{Technical Standards Used}
         \begin{description}
         	\item[IEEE802.11] Standard for Wi-Fi
         	\item[P2413] Standard for an Architectural Framework for the Internet of Things (IoT)
-        	\item[2755-2017]  IEEE guide for terms and concepts in Intelligent Process Automation
-\item[IEEE 61850-9-3-2016] International Standard for communication networks and systems for power utility automation
-\item[IEEE 802.15.4] Wireless sensor/control networks.
-\item[IEEE 1016] Software design description.
-
+        	\item[2755-2017]  IEEE guide for terms and concepts in Intelligent Process Automation.
+			\item[IEEE 61850-9-3-2016] International Standard for communication networks and systems for power utility automation
+			\item[IEEE 802.15.4] Wireless sensor/control networks.
+			\item[IEEE 1016] Software design description.
         \end{description}
